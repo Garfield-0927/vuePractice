@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script src = '../js/vue.js'></script>
+  <!-- vue template -->
+  <div id = 'app'>
+    <img style="width: 500px; "  v-bind:src="imgurl">
+    <a v-bind:href="aurl">google一下</a>
+  <!-- v-bind 语法糖写法 -->
+  <!-- v-bind:src = "" 等价于 :src = "" -->
+    <img style="width: 500px; "  :src="imgurl">
+    <a :href="aurl">google一下</a>
+  </div>
+  
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data:{
+        message: 'hello' ,
+        imgurl: 'https://i0.hdslb.com/bfs/openplatform/201906/im3cqoEktgJ5c.jpeg',
+        aurl:'http://www.baidu.com'
+      }
+  })
+  </script>
+</body>
+</html>

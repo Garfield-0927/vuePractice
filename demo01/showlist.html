@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="instance1">
+        <ul>
+            <li v-for='item in movies'>{{item}}</li>
+        </ul>
+    </div>
+
+    <script>
+        let a = new Vue({
+            el:'#instance1',
+            data:{
+                message:'hello',
+                movies:['harry poter', 'interstellar', 'tenet', 'inception']
+            }
+        })
+    </script>
+
+<!-- vue template -->
+<div id = ''></div>
+
+</script>
+</body>
+</html>

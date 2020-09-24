@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- vue template -->
+  <div id = 'app'>
+    <span v-if = "isUser">
+      <label for="username">Account</label>
+      <input type="text" id="username" placeholder="account" key = "username">
+    </span>
+    <span v-else>
+      <label for="email">Email</label>
+      <input type="text" id="email" placeholder="email" key = "email">
+    </span>
+    <button @click = "isUser = !isUser">切换方式</button>
+  </div>
+  
+  <script src = '../js/vue.js'></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data:{
+        isUser: true
+      }
+  })
+  </script>
+</body>
+</html>

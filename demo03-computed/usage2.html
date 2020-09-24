@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- vue template -->
+  <div id = 'app'>
+    <ul>
+      <li v-for="item in books">{{item}}</li>
+    </ul>
+    <h2>total price : ${{totalPrice}}</h2>
+  </div>
+  
+  <script src = '../js/vue.js'></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data:{
+        books:[
+          {id: 110, name: '中国巴菲特' , price: 199},
+          {id: 111, name: '数据结构' , price: 59},
+          {id: 112, name: '电路理论' , price: 79},
+          {id: 113, name: '复变函数' , price: 35},
+        ]
+      },
+
+
+      computed:{
+        totalPrice: function (){
+          let result = 0;
+          for(let i = 0; i < this.books.length; i++){
+            result += this.books[i].price;
+          }
+          return result;
+        }
+      }
+
+
+  })
+  </script>
+</body>
+</html>

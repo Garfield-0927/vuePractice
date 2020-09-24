@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <style>
+    .active{
+      color:red;
+    }
+  </style>
+</head>
+<body>
+<!-- vue template -->
+<div id = 'app'>
+  <ul>
+    <li v-for="(item, index) in movies" @click="liClick(index)" :class="{active:currentIndex == index}" >{{index+1}}-{{item}}</li>
+  </ul>
+
+</div>
+
+<script src = '../js/vue.js'></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data:{
+      message: 'hello' ,
+      movies:['One Piece', 'Naruto', 'LPL', 'LCK'],
+      currentIndex: 0
+    },
+
+    methods:{
+      liClick: function (index){
+        this.currentIndex = index
+      }
+    }
+})
+</script>  
+</body>
+</html>
