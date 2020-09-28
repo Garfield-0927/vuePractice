@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- vue template -->
+  <div id = 'app'>
+
+    <cpn ref="a" :cmessage = "message"></cpn>
+    <button @click = "btnClick">Capitalize</button>
+
+  </div>
+  
+
+
+  <template id="cpn">
+    <div>
+    <div>{{msg}}</div>
+    </div>
+  </template>
+
+  <script src = '../js/vue.js'></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data:{
+        message: 'hello' 
+      },
+      components:{
+        cpn:{
+          template:'#cpn',
+          props:{
+            cmessage: String
+          },
+          data(){
+            return{
+              msg:this.cmessage
+            }
+          },
+          methods:{
+            Cap(){
+              this.msg = "HELLO";
+            }
+          }
+        }
+      },
+
+
+      methods:{
+        btnClick(){
+          // console.log(this.$children);
+          // this.$children[0].Cap();
+
+
+
+          // 下面这个访问方式在开发中比较常见
+          // console.log(this.$refs.a);
+          // this.$refs.a.Cap();
+        }
+      }
+  })
+  </script>
+
+
+</body>
+</html>

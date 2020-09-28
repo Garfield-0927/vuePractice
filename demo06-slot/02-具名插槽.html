@@ -7,30 +7,22 @@
 </head>
 <body>
   
-
-  <!-- 
-    1. 基本使用 <slot></slot>
-    2. 插槽的默认值 <slot>button</slot> button就是默认值
-    3. 如果又多个值 同时放入到组件中进行替换，一起作为替换元素
-
-   -->
-  <!-- vue template -->
   <div id = 'app'>
 
-    <cpn1><button>test</button></cpn1>
-    <cpn1><input type="text" placeholder="hehehehe"></cpn1>
-    <cpn1><input type="radio">test</cpn1>
-    <cpn1><a href="http://www.baidu.com">Google</a></cpn1>
-
+    <cpn1><span>hehehe</span></cpn1>
+    <cpn1><span slot="left">hehehe</span></cpn1>
+    <cpn1><span slot="right">hehehe</span></cpn1>
+    <cpn1><span slot="center">hehehe</span></cpn1>
 
   </div>
 
 
   <template id = "cpn1">
     <div>
-      <h2>I am a component</h2>
-      <p>hahahhahahaha</p>
-      <slot></slot>
+      <slot name = "left"><span>左边</span></slot>
+      <slot name = "center"><span>中间</span></slot>
+      <slot name = "right"><span>右边</span></slot>
+      <slot>hahaha</slot>
     </div>
   </template>
   
