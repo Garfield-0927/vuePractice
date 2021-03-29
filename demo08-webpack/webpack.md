@@ -40,6 +40,6 @@
 
 ## 3.webpack基本使用
 
-​		文件架构：
+​		https://www.webpackjs.com/guides/getting-started/
 
 ​	
