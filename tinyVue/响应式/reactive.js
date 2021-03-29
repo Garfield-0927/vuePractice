@@ -38,15 +38,15 @@ let obj = {
 // obj2.foo;
 // obj2.foo = 111;
 
-function convert(obj){
+function convert(obj) {
   Object.keys(obj).forEach(key => {
     let internalValue = obj[key]            // 这里的internalValue是核心
     Object.defineProperty(obj, key, {
-      get(){
+      get() {
         console.log(internalValue);
         return internalValue;
       },
-      set(newV){
+      set(newV) {
         console.log(`from: ${internalValue} to: ${newV}`);
         internalValue = newV;
       }
@@ -82,27 +82,74 @@ obj.bar = 222;
 */
 
 
-window.Dep = class Dep{
-  constructor(){
+window.Dep = class Dep {
+  constructor() {
     this.subscribers = new Set();
   }
 
-  depend(){
+  depend() {
+    if (activeUpdate) {
+      // register the current active update
+      // as a subscriber
+      this.subscribers.add(activeUpdate);
+    }
 
   }
 
-  notify(){
-
+  notify() {
+    // run all subscriber functions
+    this.subscribers.forEach(fn => fn());
   }
 }
 
 
 let activeUpdate;
 
-function autorun(update){
-  function activeUpdateWrapper(){
-    activeUpdate = activeUpdateWrapper;
+function autorun(update) {
+  function wrappedUpdate() {
+    activeUpdate = wrappedUpdate;
     update();
     activeUpdate = null;
   }
+  wrappedUpdate();
 }
+
+
+
+
+function isObject(obj) {
+  return typeof obj === 'object' && !Array.isArray(obj) && obj !== null && obj !== undefined
+}
+
+
+function observe (obj) {
+  if (!isObject(obj)){
+    throw new TypeError();
+  }
+
+  Object.keys(obj).forEach(key=>{
+    let internalV = obj[key];
+    let dep = new Dep();
+    Object.defineProperty(obj, key, {
+      get(){
+        dep.depend();
+        return internalV;
+      },
+      set(newV){
+        const isChanged = internalV !== newV;
+        if (isChanged){
+          internalV = newV;
+          dep.notify();
+        }
+
+      }
+    })
+  })
+}
+
+
+
+
+
+
+
