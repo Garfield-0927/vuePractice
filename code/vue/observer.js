@@ -1,8 +1,10 @@
-import {defineReactive} from './defineReactive'
-
+import { defineReactive } from "./defineReactive";
+import { observeArr } from "./observeArr";
+import { arrMethods } from "./array";
 function Observer(data) {
 	if (Array.isArray(data)) {
-		console.log("isArray");
+    data.__proto__ = arrMethods;
+    observeArr(data)
 	} else {
 		this.walk(data);
 	}

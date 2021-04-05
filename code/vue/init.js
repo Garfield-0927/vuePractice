@@ -26,10 +26,6 @@ export function initState(vm) {
 		Object.keys(vm._data).forEach((key) => {
 			proxy(vm, "_data", key);
 		});
-    console.log(vm);
-    console.log(data === vm._data);
-		observe(data);
-
-    // console.log(data.str1);
+		observe(vm._data);
 	}
 }
